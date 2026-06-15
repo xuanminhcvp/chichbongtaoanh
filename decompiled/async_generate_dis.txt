@@ -1,0 +1,40 @@
+ 298             JUMP_BACKWARD            0 (to L1)
+         L1:     CALL_KW                  0
+                 CACHE
+                 CACHE
+                 CACHE
+                 CALL                     1
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+                 COMPARE_OP               0 (<)
+                 FOR_ITER                 0 (to L2)
+         L2:     CACHE
+                 CACHE
+                 CACHE
+                 BINARY_SLICE
+
+ 316             STORE_NAME               5 (received_count)
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+                 <124>
+                 COMPARE_OP               1 (<)
+                 FOR_ITER                 1 (to L3)
+                 CACHE
+         L3:     CACHE
+                 CACHE
+                 <124>
+                 LOAD_SPECIAL             3 (__aexit__)
+                 CACHE
+                 CACHE
+                 CACHE
+                 CACHE
+
+ 317             POP_JUMP_IF_FALSE        1 (to L4)

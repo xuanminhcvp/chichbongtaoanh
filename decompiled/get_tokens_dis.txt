@@ -1,0 +1,160 @@
+202           0 RESUME                   0
+
+209           2 LOAD_FAST                0 (self)
+              4 LOAD_ATTR                0 (license_key)
+             14 POP_JUMP_FORWARD_IF_TRUE    28 (to 72)
+
+210          16 LOAD_GLOBAL              2 (logger)
+             28 LOAD_METHOD              2 (error)
+             50 LOAD_CONST               1 ('Chưa có license key để lấy tokens')
+             52 PRECALL                  1
+             56 CALL                     1
+             66 POP_TOP
+
+211          68 BUILD_LIST               0
+             70 RETURN_VALUE
+
+213     >>   72 NOP
+
+216          74 LOAD_FAST                0 (self)
+             76 LOAD_ATTR                3 (session)
+             86 LOAD_METHOD              4 (get)
+
+217         108 LOAD_FAST                0 (self)
+            110 LOAD_ATTR                5 (base_url)
+            120 FORMAT_VALUE             0
+            122 LOAD_CONST               2 ('/checker/get-imagen4-token.php')
+            124 BUILD_STRING             2
+
+218         126 LOAD_CONST               3 ('license_key')
+            128 LOAD_FAST                0 (self)
+            130 LOAD_ATTR                0 (license_key)
+            140 BUILD_MAP                1
+
+219         142 LOAD_CONST               4 (30)
+
+216         144 KW_NAMES                 5
+            146 PRECALL                  3
+            150 CALL                     3
+            160 STORE_FAST               1 (response)
+
+222         162 LOAD_FAST                1 (response)
+            164 LOAD_ATTR                6 (status_code)
+            174 LOAD_CONST               6 (200)
+            176 COMPARE_OP               2 (==)
+            182 POP_JUMP_FORWARD_IF_FALSE   159 (to 502)
+
+223         184 LOAD_FAST                1 (response)
+            186 LOAD_METHOD              7 (json)
+            208 PRECALL                  0
+            212 CALL                     0
+            222 STORE_FAST               2 (result)
+
+224         224 LOAD_FAST                2 (result)
+            226 LOAD_METHOD              4 (get)
+            248 LOAD_CONST               7 ('success')
+            250 PRECALL                  1
+            254 CALL                     1
+            264 POP_JUMP_FORWARD_IF_FALSE    67 (to 400)
+
+225         266 LOAD_FAST                2 (result)
+            268 LOAD_METHOD              4 (get)
+            290 LOAD_CONST               8 ('tokens')
+            292 BUILD_LIST               0
+            294 PRECALL                  2
+            298 CALL                     2
+            308 STORE_FAST               3 (tokens)
+
+226         310 LOAD_GLOBAL              2 (logger)
+            322 LOAD_METHOD              8 (info)
+            344 LOAD_CONST               9 ('Lấy được ')
+            346 LOAD_GLOBAL             19 (NULL + len)
+            358 LOAD_FAST                3 (tokens)
+            360 PRECALL                  1
+            364 CALL                     1
+            374 FORMAT_VALUE             0
+            376 LOAD_CONST              10 (' tokens từ server')
+            378 BUILD_STRING             3
+            380 PRECALL                  1
+            384 CALL                     1
+            394 POP_TOP
+
+227         396 LOAD_FAST                3 (tokens)
+            398 RETURN_VALUE
+
+229     >>  400 LOAD_GLOBAL              2 (logger)
+            412 LOAD_METHOD              2 (error)
+            434 LOAD_CONST              11 ('Failed to get tokens: ')
+            436 LOAD_FAST                2 (result)
+            438 LOAD_METHOD              4 (get)
+            460 LOAD_CONST              12 ('message')
+            462 LOAD_CONST              13 ('Unknown error')
+            464 PRECALL                  2
+            468 CALL                     2
+            478 FORMAT_VALUE             0
+            480 BUILD_STRING             2
+            482 PRECALL                  1
+            486 CALL                     1
+            496 POP_TOP
+
+230         498 BUILD_LIST               0
+            500 RETURN_VALUE
+
+232     >>  502 LOAD_GLOBAL              2 (logger)
+            514 LOAD_METHOD              2 (error)
+            536 LOAD_CONST              14 ('HTTP error ')
+            538 LOAD_FAST                1 (response)
+            540 LOAD_ATTR                6 (status_code)
+            550 FORMAT_VALUE             0
+            552 LOAD_CONST              15 (': ')
+            554 LOAD_FAST                1 (response)
+            556 LOAD_ATTR               10 (text)
+            566 FORMAT_VALUE             0
+            568 BUILD_STRING             4
+            570 PRECALL                  1
+            574 CALL                     1
+            584 POP_TOP
+
+233         586 BUILD_LIST               0
+            588 RETURN_VALUE
+        >>  590 PUSH_EXC_INFO
+
+235         592 LOAD_GLOBAL             22 (Exception)
+            604 CHECK_EXC_MATCH
+            606 POP_JUMP_FORWARD_IF_FALSE    41 (to 690)
+            608 STORE_FAST               4 (e)
+
+236         610 LOAD_GLOBAL              2 (logger)
+            622 LOAD_METHOD              2 (error)
+            644 LOAD_CONST              16 ('Lỗi khi lấy tokens: ')
+            646 LOAD_FAST                4 (e)
+            648 FORMAT_VALUE             0
+            650 BUILD_STRING             2
+            652 PRECALL                  1
+            656 CALL                     1
+            666 POP_TOP
+
+237         668 BUILD_LIST               0
+            670 SWAP                     2
+            672 POP_EXCEPT
+            674 LOAD_CONST              17 (None)
+            676 STORE_FAST               4 (e)
+            678 DELETE_FAST              4 (e)
+            680 RETURN_VALUE
+        >>  682 LOAD_CONST              17 (None)
+            684 STORE_FAST               4 (e)
+            686 DELETE_FAST              4 (e)
+            688 RERAISE                  1
+
+235     >>  690 RERAISE                  0
+        >>  692 COPY                     3
+            694 POP_EXCEPT
+            696 RERAISE                  1
+ExceptionTable:
+  74 to 396 -> 590 [0]
+  400 to 498 -> 590 [0]
+  502 to 586 -> 590 [0]
+  590 to 608 -> 692 [1] lasti
+  610 to 668 -> 682 [1] lasti
+  670 to 670 -> 692 [1] lasti
+  682 to 690 -> 692 [1] lasti

@@ -1,0 +1,664 @@
+ 39           0 RESUME                   0
+
+ 41           2 NOP
+
+ 43           4 LOAD_FAST                5 (brand)
+              6 JUMP_IF_TRUE_OR_POP      6 (to 20)
+              8 LOAD_FAST                0 (self)
+             10 LOAD_ATTR                0 (brand_id)
+        >>   20 STORE_FAST               5 (brand)
+
+ 44          22 LOAD_FAST                6 (current_version)
+             24 JUMP_IF_TRUE_OR_POP      6 (to 38)
+             26 LOAD_FAST                0 (self)
+             28 LOAD_ATTR                1 (version)
+        >>   38 STORE_FAST               6 (current_version)
+
+ 46          40 LOAD_FAST                2 (hardware_id)
+             42 POP_JUMP_FORWARD_IF_FALSE     4 (to 52)
+             44 LOAD_FAST                3 (cpu_id)
+             46 POP_JUMP_FORWARD_IF_FALSE     2 (to 52)
+             48 LOAD_FAST                4 (mainboard_uuid)
+             50 POP_JUMP_FORWARD_IF_TRUE    49 (to 150)
+
+ 47     >>   52 LOAD_FAST                0 (self)
+             54 LOAD_ATTR                2 (hardware_info_obj)
+             64 LOAD_METHOD              3 (get_hardware_info)
+             86 PRECALL                  0
+             90 CALL                     0
+            100 STORE_FAST               7 (hw_info)
+
+ 48         102 LOAD_FAST                7 (hw_info)
+            104 LOAD_CONST               1 ('hardware_id')
+            106 BINARY_SUBSCR
+            116 STORE_FAST               2 (hardware_id)
+
+ 49         118 LOAD_FAST                7 (hw_info)
+            120 LOAD_CONST               2 ('cpu_id')
+            122 BINARY_SUBSCR
+            132 STORE_FAST               3 (cpu_id)
+
+ 50         134 LOAD_FAST                7 (hw_info)
+            136 LOAD_CONST               3 ('mainboard_uuid')
+            138 BINARY_SUBSCR
+            148 STORE_FAST               4 (mainboard_uuid)
+
+ 51     >>  150 LOAD_GLOBAL              8 (logger)
+            162 LOAD_METHOD              5 (info)
+            184 LOAD_CONST               4 ('🔍 Verifying license with server...')
+            186 PRECALL                  1
+            190 CALL                     1
+            200 POP_TOP
+
+ 52         202 LOAD_GLOBAL              8 (logger)
+            214 LOAD_METHOD              5 (info)
+            236 LOAD_CONST               5 ('📤 PAYLOAD BEING PREPARED:')
+            238 PRECALL                  1
+            242 CALL                     1
+            252 POP_TOP
+
+ 53         254 LOAD_GLOBAL              8 (logger)
+            266 LOAD_METHOD              5 (info)
+            288 LOAD_CONST               6 ('   license_key: ')
+            290 LOAD_FAST                1 (license_key)
+            292 LOAD_CONST               7 (None)
+            294 LOAD_CONST               8 (20)
+            296 BUILD_SLICE              2
+            298 BINARY_SUBSCR
+            308 FORMAT_VALUE             0
+            310 LOAD_CONST               9 ('...')
+            312 BUILD_STRING             3
+            314 PRECALL                  1
+            318 CALL                     1
+            328 POP_TOP
+
+ 54         330 LOAD_GLOBAL              8 (logger)
+            342 LOAD_METHOD              5 (info)
+            364 LOAD_CONST              10 ('   hardware_id: ')
+            366 LOAD_FAST                2 (hardware_id)
+            368 FORMAT_VALUE             0
+            370 BUILD_STRING             2
+            372 PRECALL                  1
+            376 CALL                     1
+            386 POP_TOP
+
+ 55         388 LOAD_GLOBAL              8 (logger)
+            400 LOAD_METHOD              5 (info)
+            422 LOAD_CONST              11 ('   cpu_id: ')
+            424 LOAD_FAST                3 (cpu_id)
+            426 FORMAT_VALUE             0
+            428 BUILD_STRING             2
+            430 PRECALL                  1
+            434 CALL                     1
+            444 POP_TOP
+
+ 56         446 LOAD_GLOBAL              8 (logger)
+            458 LOAD_METHOD              5 (info)
+            480 LOAD_CONST              12 ('   mainboard_uuid: ')
+            482 LOAD_FAST                4 (mainboard_uuid)
+            484 FORMAT_VALUE             0
+            486 BUILD_STRING             2
+            488 PRECALL                  1
+            492 CALL                     1
+            502 POP_TOP
+
+ 57         504 LOAD_GLOBAL              8 (logger)
+            516 LOAD_METHOD              5 (info)
+            538 LOAD_CONST              13 ('   current_version: ')
+            540 LOAD_FAST                6 (current_version)
+            542 FORMAT_VALUE             0
+            544 BUILD_STRING             2
+            546 PRECALL                  1
+            550 CALL                     1
+            560 POP_TOP
+
+ 58         562 LOAD_GLOBAL              8 (logger)
+            574 LOAD_METHOD              5 (info)
+            596 LOAD_CONST              14 ('   brand: ')
+            598 LOAD_FAST                5 (brand)
+            600 FORMAT_VALUE             0
+            602 BUILD_STRING             2
+            604 PRECALL                  1
+            608 CALL                     1
+            618 POP_TOP
+
+ 60         620 LOAD_FAST                1 (license_key)
+
+ 61         622 LOAD_FAST                2 (hardware_id)
+
+ 62         624 LOAD_FAST                3 (cpu_id)
+
+ 63         626 LOAD_FAST                4 (mainboard_uuid)
+
+ 64         628 LOAD_FAST                6 (current_version)
+
+ 65         630 LOAD_FAST                5 (brand)
+
+ 59         632 LOAD_CONST              15 (('license_key', 'hardware_id', 'cpu_id', 'mainboard_uuid', 'current_version', 'brand'))
+            634 BUILD_CONST_KEY_MAP      6
+            636 STORE_FAST               8 (payload)
+
+ 67         638 LOAD_CONST              16 ('Content-Type')
+            640 LOAD_CONST              17 ('application/json')
+            642 BUILD_MAP                1
+            644 STORE_FAST               9 (headers)
+
+ 69         646 LOAD_FAST                0 (self)
+            648 LOAD_ATTR                6 (base_url)
+            658 FORMAT_VALUE             0
+            660 LOAD_CONST              18 ('/license/verify_imagen4.php')
+            662 BUILD_STRING             2
+            664 STORE_FAST              10 (url)
+
+ 70         666 LOAD_CONST              19 (3)
+            668 STORE_FAST              11 (max_retry)
+
+ 71         670 LOAD_GLOBAL             15 (NULL + range)
+            682 LOAD_CONST              20 (1)
+            684 LOAD_FAST               11 (max_retry)
+            686 LOAD_CONST              20 (1)
+            688 BINARY_OP                0 (+)
+            692 PRECALL                  2
+            696 CALL                     2
+            706 GET_ITER
+        >>  708 EXTENDED_ARG             3
+            710 FOR_ITER               957 (to 2626)
+            712 STORE_FAST              12 (attempt)
+
+ 72         714 LOAD_GLOBAL              8 (logger)
+            726 LOAD_METHOD              5 (info)
+            748 LOAD_CONST              21 ('🔄 RETRY ATTEMPT #')
+            750 LOAD_FAST               12 (attempt)
+            752 FORMAT_VALUE             0
+            754 LOAD_CONST              22 (' (JSON with current field names)')
+            756 BUILD_STRING             3
+            758 PRECALL                  1
+            762 CALL                     1
+            772 POP_TOP
+
+ 73         774 LOAD_GLOBAL              8 (logger)
+            786 LOAD_METHOD              5 (info)
+            808 LOAD_CONST              23 ('[DEBUG] Endpoint: ')
+            810 LOAD_FAST               10 (url)
+            812 FORMAT_VALUE             0
+            814 BUILD_STRING             2
+            816 PRECALL                  1
+            820 CALL                     1
+            830 POP_TOP
+
+ 74         832 LOAD_GLOBAL              8 (logger)
+            844 LOAD_METHOD              5 (info)
+            866 LOAD_CONST              24 ('[DEBUG] Headers: ')
+            868 LOAD_FAST                9 (headers)
+            870 FORMAT_VALUE             0
+            872 BUILD_STRING             2
+            874 PRECALL                  1
+            878 CALL                     1
+            888 POP_TOP
+
+ 75         890 LOAD_GLOBAL              8 (logger)
+            902 LOAD_METHOD              5 (info)
+            924 LOAD_CONST              25 ('[DEBUG] Method: POST')
+            926 PRECALL                  1
+            930 CALL                     1
+            940 POP_TOP
+
+ 76         942 LOAD_GLOBAL              8 (logger)
+            954 LOAD_METHOD              5 (info)
+            976 LOAD_CONST              26 ('[DEBUG] Data type: json')
+            978 PRECALL                  1
+            982 CALL                     1
+            992 POP_TOP
+
+ 77         994 LOAD_GLOBAL              8 (logger)
+           1006 LOAD_METHOD              5 (info)
+           1028 LOAD_CONST              27 ('[DEBUG] Payload (dict): ')
+           1030 LOAD_FAST                8 (payload)
+           1032 FORMAT_VALUE             0
+           1034 BUILD_STRING             2
+           1036 PRECALL                  1
+           1040 CALL                     1
+           1050 POP_TOP
+
+ 78        1052 NOP
+
+ 79        1054 LOAD_GLOBAL             17 (NULL + json)
+           1066 LOAD_ATTR                9 (dumps)
+           1076 LOAD_FAST                8 (payload)
+           1078 LOAD_CONST              28 (False)
+           1080 KW_NAMES                29
+           1082 PRECALL                  2
+           1086 CALL                     2
+           1096 STORE_FAST              13 (raw_body)
+
+ 80        1098 LOAD_GLOBAL              8 (logger)
+           1110 LOAD_METHOD              5 (info)
+           1132 LOAD_CONST              30 ('[DEBUG] Raw body (json): ')
+           1134 LOAD_FAST               13 (raw_body)
+           1136 FORMAT_VALUE             0
+           1138 BUILD_STRING             2
+           1140 PRECALL                  1
+           1144 CALL                     1
+           1154 POP_TOP
+           1156 JUMP_FORWARD            52 (to 1262)
+        >> 1158 PUSH_EXC_INFO
+
+ 81        1160 LOAD_GLOBAL             20 (Exception)
+           1172 CHECK_EXC_MATCH
+           1174 POP_JUMP_FORWARD_IF_FALSE    39 (to 1254)
+           1176 STORE_FAST              14 (e)
+
+ 82        1178 LOAD_GLOBAL              8 (logger)
+           1190 LOAD_METHOD             11 (warning)
+           1212 LOAD_CONST              31 ('[DEBUG] Không thể dump raw body json: ')
+           1214 LOAD_FAST               14 (e)
+           1216 FORMAT_VALUE             0
+           1218 BUILD_STRING             2
+           1220 PRECALL                  1
+           1224 CALL                     1
+           1234 POP_TOP
+           1236 POP_EXCEPT
+           1238 LOAD_CONST               7 (None)
+           1240 STORE_FAST              14 (e)
+           1242 DELETE_FAST             14 (e)
+           1244 JUMP_FORWARD             8 (to 1262)
+        >> 1246 LOAD_CONST               7 (None)
+           1248 STORE_FAST              14 (e)
+           1250 DELETE_FAST             14 (e)
+           1252 RERAISE                  1
+
+ 81     >> 1254 RERAISE                  0
+        >> 1256 COPY                     3
+           1258 POP_EXCEPT
+           1260 RERAISE                  1
+
+ 83     >> 1262 NOP
+
+ 84        1264 LOAD_GLOBAL             25 (NULL + requests)
+           1276 LOAD_ATTR               13 (post)
+           1286 LOAD_FAST               10 (url)
+           1288 LOAD_FAST                8 (payload)
+           1290 LOAD_FAST                9 (headers)
+           1292 LOAD_CONST              32 (30)
+           1294 KW_NAMES                33
+           1296 PRECALL                  4
+           1300 CALL                     4
+           1310 STORE_FAST              15 (response)
+
+ 85        1312 LOAD_GLOBAL              8 (logger)
+           1324 LOAD_METHOD              5 (info)
+           1346 LOAD_CONST              34 ('📡 Server response status: ')
+           1348 LOAD_FAST               15 (response)
+           1350 LOAD_ATTR               14 (status_code)
+           1360 FORMAT_VALUE             0
+           1362 BUILD_STRING             2
+           1364 PRECALL                  1
+           1368 CALL                     1
+           1378 POP_TOP
+
+ 86        1380 LOAD_GLOBAL              8 (logger)
+           1392 LOAD_METHOD              5 (info)
+           1414 LOAD_CONST              35 ('📥 RESPONSE RECEIVED:')
+           1416 PRECALL                  1
+           1420 CALL                     1
+           1430 POP_TOP
+
+ 87        1432 LOAD_GLOBAL              8 (logger)
+           1444 LOAD_METHOD              5 (info)
+           1466 LOAD_CONST              36 ('   Status: ')
+           1468 LOAD_FAST               15 (response)
+           1470 LOAD_ATTR               14 (status_code)
+           1480 FORMAT_VALUE             0
+           1482 BUILD_STRING             2
+           1484 PRECALL                  1
+           1488 CALL                     1
+           1498 POP_TOP
+
+ 88        1500 LOAD_GLOBAL              8 (logger)
+           1512 LOAD_METHOD              5 (info)
+           1534 LOAD_CONST              37 ('   Content: ')
+           1536 LOAD_FAST               15 (response)
+           1538 LOAD_ATTR               15 (text)
+           1548 FORMAT_VALUE             0
+           1550 BUILD_STRING             2
+           1552 PRECALL                  1
+           1556 CALL                     1
+           1566 POP_TOP
+
+ 89        1568 LOAD_FAST               15 (response)
+           1570 LOAD_ATTR               14 (status_code)
+           1580 LOAD_CONST              38 (200)
+           1582 COMPARE_OP               2 (==)
+           1588 EXTENDED_ARG             1
+           1590 POP_JUMP_FORWARD_IF_FALSE   439 (to 2470)
+
+ 90        1592 NOP
+
+ 91        1594 LOAD_FAST               15 (response)
+           1596 LOAD_METHOD              8 (json)
+           1618 PRECALL                  0
+           1622 CALL                     0
+           1632 STORE_FAST              16 (result)
+
+ 92        1634 LOAD_GLOBAL              8 (logger)
+           1646 LOAD_METHOD              5 (info)
+           1668 LOAD_CONST              39 ('📋 PARSED JSON:')
+           1670 PRECALL                  1
+           1674 CALL                     1
+           1684 POP_TOP
+
+ 93        1686 LOAD_GLOBAL              8 (logger)
+           1698 LOAD_METHOD              5 (info)
+           1720 LOAD_CONST              40 ('   Success: ')
+           1722 LOAD_FAST               16 (result)
+           1724 LOAD_METHOD             16 (get)
+           1746 LOAD_CONST              41 ('success')
+           1748 LOAD_CONST              42 ('N/A')
+           1750 PRECALL                  2
+           1754 CALL                     2
+           1764 FORMAT_VALUE             0
+           1766 BUILD_STRING             2
+           1768 PRECALL                  1
+           1772 CALL                     1
+           1782 POP_TOP
+
+ 94        1784 LOAD_GLOBAL              8 (logger)
+           1796 LOAD_METHOD              5 (info)
+           1818 LOAD_CONST              43 ('   Message: ')
+           1820 LOAD_FAST               16 (result)
+           1822 LOAD_METHOD             16 (get)
+           1844 LOAD_CONST              44 ('message')
+           1846 LOAD_CONST              42 ('N/A')
+           1848 PRECALL                  2
+           1852 CALL                     2
+           1862 FORMAT_VALUE             0
+           1864 BUILD_STRING             2
+           1866 PRECALL                  1
+           1870 CALL                     1
+           1880 POP_TOP
+
+ 95        1882 LOAD_GLOBAL              8 (logger)
+           1894 LOAD_METHOD              5 (info)
+           1916 LOAD_CONST              45 ('   Data: ')
+           1918 LOAD_FAST               16 (result)
+           1920 LOAD_METHOD             16 (get)
+           1942 LOAD_CONST              46 ('data')
+           1944 LOAD_CONST              42 ('N/A')
+           1946 PRECALL                  2
+           1950 CALL                     2
+           1960 FORMAT_VALUE             0
+           1962 BUILD_STRING             2
+           1964 PRECALL                  1
+           1968 CALL                     1
+           1978 POP_TOP
+
+ 96        1980 LOAD_FAST               16 (result)
+           1982 LOAD_METHOD             16 (get)
+           2004 LOAD_CONST              41 ('success')
+           2006 LOAD_CONST              28 (False)
+           2008 PRECALL                  2
+           2012 CALL                     2
+           2022 POP_JUMP_FORWARD_IF_FALSE   122 (to 2268)
+
+ 98        2024 LOAD_FAST               16 (result)
+           2026 LOAD_METHOD             16 (get)
+           2048 LOAD_CONST              46 ('data')
+           2050 BUILD_MAP                0
+           2052 PRECALL                  2
+           2056 CALL                     2
+           2066 STORE_FAST              17 (data)
+
+ 99        2068 BUILD_MAP                0
+           2070 STORE_FAST              18 (update_info)
+
+100        2072 LOAD_FAST               17 (data)
+           2074 LOAD_METHOD             16 (get)
+           2096 LOAD_CONST              47 ('update_available')
+           2098 LOAD_CONST              28 (False)
+           2100 PRECALL                  2
+           2104 CALL                     2
+           2114 POP_JUMP_FORWARD_IF_FALSE    67 (to 2250)
+
+102        2116 LOAD_CONST              48 (True)
+
+103        2118 LOAD_FAST               17 (data)
+           2120 LOAD_METHOD             16 (get)
+           2142 LOAD_CONST              49 ('latest_version')
+           2144 LOAD_CONST              50 ('')
+           2146 PRECALL                  2
+           2150 CALL                     2
+
+104        2160 LOAD_FAST               17 (data)
+           2162 LOAD_METHOD             16 (get)
+           2184 LOAD_CONST              51 ('download_url')
+           2186 LOAD_CONST              50 ('')
+           2188 PRECALL                  2
+           2192 CALL                     2
+
+105        2202 LOAD_FAST               17 (data)
+           2204 LOAD_METHOD             16 (get)
+           2226 LOAD_CONST              52 ('update_message')
+           2228 LOAD_CONST              53 ('Có phiên bản mới!')
+           2230 PRECALL                  2
+           2234 CALL                     2
+
+101        2244 LOAD_CONST              54 (('update_available', 'latest_version', 'download_url', 'update_message'))
+           2246 BUILD_CONST_KEY_MAP      4
+           2248 STORE_FAST              18 (update_info)
+
+107     >> 2250 LOAD_CONST              48 (True)
+           2252 LOAD_FAST               17 (data)
+           2254 LOAD_CONST              55 (('success', 'data'))
+           2256 BUILD_CONST_KEY_MAP      2
+           2258 LOAD_FAST               18 (update_info)
+           2260 DICT_UPDATE              1
+           2262 SWAP                     2
+           2264 POP_TOP
+           2266 RETURN_VALUE
+
+109     >> 2268 LOAD_FAST               16 (result)
+           2270 LOAD_METHOD             16 (get)
+           2292 LOAD_CONST              44 ('message')
+           2294 LOAD_CONST              56 ('Unknown server error')
+           2296 PRECALL                  2
+           2300 CALL                     2
+           2310 STORE_FAST              19 (error_msg)
+
+110        2312 LOAD_FAST               12 (attempt)
+           2314 LOAD_FAST               11 (max_retry)
+           2316 COMPARE_OP               2 (==)
+           2322 POP_JUMP_FORWARD_IF_TRUE     4 (to 2332)
+           2324 LOAD_CONST              57 ('Missing required fields')
+           2326 LOAD_FAST               19 (error_msg)
+           2328 CONTAINS_OP              0
+           2330 POP_JUMP_FORWARD_IF_FALSE     7 (to 2346)
+
+111     >> 2332 LOAD_CONST              28 (False)
+           2334 LOAD_FAST               19 (error_msg)
+           2336 LOAD_CONST              58 (('success', 'error'))
+           2338 BUILD_CONST_KEY_MAP      2
+           2340 SWAP                     2
+           2342 POP_TOP
+           2344 RETURN_VALUE
+
+113     >> 2346 EXTENDED_ARG             3
+           2348 JUMP_BACKWARD          821 (to 708)
+        >> 2350 PUSH_EXC_INFO
+
+114        2352 LOAD_GLOBAL             16 (json)
+           2364 LOAD_ATTR               17 (JSONDecodeError)
+           2374 CHECK_EXC_MATCH
+           2376 POP_JUMP_FORWARD_IF_FALSE    42 (to 2462)
+           2378 STORE_FAST              20 (json_err)
+
+115        2380 LOAD_FAST               12 (attempt)
+           2382 LOAD_FAST               11 (max_retry)
+           2384 COMPARE_OP               2 (==)
+           2390 POP_JUMP_FORWARD_IF_FALSE    25 (to 2442)
+
+116        2392 LOAD_CONST              28 (False)
+           2394 LOAD_GLOBAL             37 (NULL + str)
+           2406 LOAD_FAST               20 (json_err)
+           2408 PRECALL                  1
+           2412 CALL                     1
+           2422 LOAD_CONST              58 (('success', 'error'))
+           2424 BUILD_CONST_KEY_MAP      2
+           2426 SWAP                     2
+           2428 POP_EXCEPT
+           2430 LOAD_CONST               7 (None)
+           2432 STORE_FAST              20 (json_err)
+           2434 DELETE_FAST             20 (json_err)
+           2436 SWAP                     2
+           2438 POP_TOP
+           2440 RETURN_VALUE
+
+117     >> 2442 POP_EXCEPT
+           2444 LOAD_CONST               7 (None)
+           2446 STORE_FAST              20 (json_err)
+           2448 DELETE_FAST             20 (json_err)
+           2450 EXTENDED_ARG             3
+           2452 JUMP_BACKWARD          873 (to 708)
+        >> 2454 LOAD_CONST               7 (None)
+           2456 STORE_FAST              20 (json_err)
+           2458 DELETE_FAST             20 (json_err)
+           2460 RERAISE                  1
+
+114     >> 2462 RERAISE                  0
+        >> 2464 COPY                     3
+           2466 POP_EXCEPT
+           2468 RERAISE                  1
+
+119     >> 2470 LOAD_FAST               12 (attempt)
+           2472 LOAD_FAST               11 (max_retry)
+           2474 COMPARE_OP               2 (==)
+           2480 POP_JUMP_FORWARD_IF_FALSE    15 (to 2512)
+
+120        2482 LOAD_CONST              28 (False)
+           2484 LOAD_CONST              59 ('HTTP ')
+           2486 LOAD_FAST               15 (response)
+           2488 LOAD_ATTR               14 (status_code)
+           2498 FORMAT_VALUE             0
+           2500 BUILD_STRING             2
+           2502 LOAD_CONST              58 (('success', 'error'))
+           2504 BUILD_CONST_KEY_MAP      2
+           2506 SWAP                     2
+           2508 POP_TOP
+           2510 RETURN_VALUE
+
+121     >> 2512 EXTENDED_ARG             3
+           2514 JUMP_BACKWARD          904 (to 708)
+        >> 2516 PUSH_EXC_INFO
+
+122        2518 LOAD_GLOBAL             20 (Exception)
+           2530 CHECK_EXC_MATCH
+           2532 POP_JUMP_FORWARD_IF_FALSE    42 (to 2618)
+           2534 STORE_FAST              21 (req_err)
+
+123        2536 LOAD_FAST               12 (attempt)
+           2538 LOAD_FAST               11 (max_retry)
+           2540 COMPARE_OP               2 (==)
+           2546 POP_JUMP_FORWARD_IF_FALSE    25 (to 2598)
+
+124        2548 LOAD_CONST              28 (False)
+           2550 LOAD_GLOBAL             37 (NULL + str)
+           2562 LOAD_FAST               21 (req_err)
+           2564 PRECALL                  1
+           2568 CALL                     1
+           2578 LOAD_CONST              58 (('success', 'error'))
+           2580 BUILD_CONST_KEY_MAP      2
+           2582 SWAP                     2
+           2584 POP_EXCEPT
+           2586 LOAD_CONST               7 (None)
+           2588 STORE_FAST              21 (req_err)
+           2590 DELETE_FAST             21 (req_err)
+           2592 SWAP                     2
+           2594 POP_TOP
+           2596 RETURN_VALUE
+
+125     >> 2598 POP_EXCEPT
+           2600 LOAD_CONST               7 (None)
+           2602 STORE_FAST              21 (req_err)
+           2604 DELETE_FAST             21 (req_err)
+           2606 EXTENDED_ARG             3
+           2608 JUMP_BACKWARD          951 (to 708)
+        >> 2610 LOAD_CONST               7 (None)
+           2612 STORE_FAST              21 (req_err)
+           2614 DELETE_FAST             21 (req_err)
+           2616 RERAISE                  1
+
+122     >> 2618 RERAISE                  0
+        >> 2620 COPY                     3
+           2622 POP_EXCEPT
+           2624 RERAISE                  1
+
+126     >> 2626 LOAD_CONST              28 (False)
+           2628 LOAD_CONST              60 ('All retry attempts failed')
+           2630 LOAD_CONST              58 (('success', 'error'))
+           2632 BUILD_CONST_KEY_MAP      2
+           2634 RETURN_VALUE
+        >> 2636 PUSH_EXC_INFO
+
+127        2638 LOAD_GLOBAL             20 (Exception)
+           2650 CHECK_EXC_MATCH
+           2652 POP_JUMP_FORWARD_IF_FALSE    28 (to 2710)
+           2654 STORE_FAST              14 (e)
+
+128        2656 LOAD_CONST              28 (False)
+           2658 LOAD_GLOBAL             37 (NULL + str)
+           2670 LOAD_FAST               14 (e)
+           2672 PRECALL                  1
+           2676 CALL                     1
+           2686 LOAD_CONST              58 (('success', 'error'))
+           2688 BUILD_CONST_KEY_MAP      2
+           2690 SWAP                     2
+           2692 POP_EXCEPT
+           2694 LOAD_CONST               7 (None)
+           2696 STORE_FAST              14 (e)
+           2698 DELETE_FAST             14 (e)
+           2700 RETURN_VALUE
+        >> 2702 LOAD_CONST               7 (None)
+           2704 STORE_FAST              14 (e)
+           2706 DELETE_FAST             14 (e)
+           2708 RERAISE                  1
+
+127     >> 2710 RERAISE                  0
+        >> 2712 COPY                     3
+           2714 POP_EXCEPT
+           2716 RERAISE                  1
+ExceptionTable:
+  4 to 1050 -> 2636 [0]
+  1054 to 1154 -> 1158 [1]
+  1156 to 1156 -> 2636 [0]
+  1158 to 1176 -> 1256 [2] lasti
+  1178 to 1234 -> 1246 [2] lasti
+  1236 to 1244 -> 2636 [0]
+  1246 to 1254 -> 1256 [2] lasti
+  1256 to 1260 -> 2636 [0]
+  1264 to 1590 -> 2516 [1]
+  1594 to 2260 -> 2350 [1]
+  2262 to 2264 -> 2636 [0]
+  2268 to 2338 -> 2350 [1]
+  2340 to 2342 -> 2636 [0]
+  2346 to 2348 -> 2636 [0]
+  2350 to 2378 -> 2464 [2] lasti
+  2380 to 2424 -> 2454 [2] lasti
+  2426 to 2426 -> 2464 [2] lasti
+  2428 to 2434 -> 2516 [1]
+  2436 to 2438 -> 2636 [0]
+  2442 to 2448 -> 2516 [1]
+  2450 to 2452 -> 2636 [0]
+  2454 to 2462 -> 2464 [2] lasti
+  2464 to 2504 -> 2516 [1]
+  2506 to 2508 -> 2636 [0]
+  2512 to 2514 -> 2636 [0]
+  2516 to 2534 -> 2620 [2] lasti
+  2536 to 2580 -> 2610 [2] lasti
+  2582 to 2582 -> 2620 [2] lasti
+  2584 to 2594 -> 2636 [0]
+  2598 to 2608 -> 2636 [0]
+  2610 to 2618 -> 2620 [2] lasti
+  2620 to 2632 -> 2636 [0]
+  2636 to 2654 -> 2712 [1] lasti
+  2656 to 2688 -> 2702 [1] lasti
+  2690 to 2690 -> 2712 [1] lasti
+  2702 to 2710 -> 2712 [1] lasti

@@ -1,0 +1,1313 @@
+298           0 RETURN_GENERATOR
+              2 POP_TOP
+              4 RESUME                   0
+
+315           6 LOAD_FAST                0 (self)
+              8 LOAD_ATTR                0 (results)
+             18 LOAD_METHOD              1 (clear)
+             40 PRECALL                  0
+             44 CALL                     0
+             54 POP_TOP
+
+316          56 LOAD_GLOBAL              5 (NULL + len)
+             68 LOAD_FAST                1 (prompts)
+             70 PRECALL                  1
+             74 CALL                     1
+             84 LOAD_FAST                0 (self)
+             86 STORE_ATTR               3 (total_prompts)
+
+317          96 LOAD_CONST               1 (0)
+             98 LOAD_FAST                0 (self)
+            100 STORE_ATTR               4 (sent_count)
+
+318         110 LOAD_CONST               1 (0)
+            112 LOAD_FAST                0 (self)
+            114 STORE_ATTR               5 (received_count)
+
+319         124 LOAD_CONST               1 (0)
+            126 LOAD_FAST                0 (self)
+            128 STORE_ATTR               6 (failed_count)
+
+320         138 LOAD_CONST               1 (0)
+            140 LOAD_FAST                0 (self)
+            142 STORE_ATTR               7 (processed_count)
+
+321         152 LOAD_CONST               2 (True)
+            154 LOAD_FAST                0 (self)
+            156 STORE_ATTR               8 (is_generating)
+
+322         166 LOAD_CONST               3 (False)
+            168 LOAD_FAST                0 (self)
+            170 STORE_ATTR               9 (consumer_finished)
+
+324         180 LOAD_CONST               1 (0)
+            182 LOAD_FAST                0 (self)
+            184 STORE_ATTR              10 (_saved_sequence)
+
+327         194 LOAD_FAST                7 (original_prompts)
+            196 POP_JUMP_FORWARD_IF_FALSE     2 (to 202)
+            198 LOAD_FAST                7 (original_prompts)
+            200 JUMP_FORWARD            19 (to 240)
+        >>  202 LOAD_FAST                1 (prompts)
+            204 LOAD_METHOD             11 (copy)
+            226 PRECALL                  0
+            230 CALL                     0
+        >>  240 LOAD_FAST                0 (self)
+            242 STORE_ATTR              12 (original_prompts)
+
+328         252 LOAD_FAST                8 (task_mapping)
+            254 LOAD_FAST                0 (self)
+            256 STORE_ATTR              13 (task_mapping)
+
+330         266 LOAD_FAST                9 (attachments_payload)
+            268 POP_JUMP_FORWARD_IF_FALSE     2 (to 274)
+            270 LOAD_FAST                9 (attachments_payload)
+            272 JUMP_FORWARD             1 (to 276)
+        >>  274 LOAD_CONST               0 (None)
+        >>  276 LOAD_FAST                0 (self)
+            278 STORE_ATTR              14 (attachments_payload)
+
+332         288 LOAD_FAST               10 (attachments_by_index)
+            290 POP_JUMP_FORWARD_IF_FALSE     2 (to 296)
+            292 LOAD_FAST               10 (attachments_by_index)
+            294 JUMP_FORWARD            18 (to 332)
+        >>  296 LOAD_CONST               1 (0)
+            298 BUILD_LIST               1
+            300 LOAD_GLOBAL              5 (NULL + len)
+            312 LOAD_FAST                1 (prompts)
+            314 PRECALL                  1
+            318 CALL                     1
+            328 BINARY_OP                5 (*)
+        >>  332 LOAD_FAST                0 (self)
+            334 STORE_ATTR              15 (attachments_by_index)
+
+334         344 LOAD_GLOBAL             33 (NULL + asyncio)
+            356 LOAD_ATTR               17 (Event)
+            366 PRECALL                  0
+            370 CALL                     0
+            380 LOAD_FAST                0 (self)
+            382 STORE_ATTR              18 (all_results_received)
+
+336         392 LOAD_FAST               11 (attachments_order_by_index)
+            394 POP_JUMP_FORWARD_IF_FALSE     2 (to 400)
+            396 LOAD_FAST               11 (attachments_order_by_index)
+            398 JUMP_FORWARD            11 (to 422)
+        >>  400 LOAD_CONST               4 (<code object <listcomp> at 0x104689a30, file "websocket_client_simple.pyc", line 336>)
+            402 MAKE_FUNCTION            0
+            404 LOAD_FAST                1 (prompts)
+            406 GET_ITER
+            408 PRECALL                  0
+            412 CALL                     0
+        >>  422 LOAD_FAST                0 (self)
+            424 STORE_ATTR              19 (attachments_order_by_index)
+
+339         434 LOAD_FAST                2 (output_dir)
+            436 LOAD_FAST                0 (self)
+            438 STORE_ATTR              20 (output_dir)
+
+340         448 LOAD_FAST                5 (progress_callback)
+            450 LOAD_FAST                0 (self)
+            452 STORE_ATTR              21 (progress_callback)
+
+342         462 LOAD_FAST                3 (aspect_ratio)
+            464 LOAD_FAST                0 (self)
+            466 STORE_ATTR              22 (_target_aspect_ratio)
+
+344         476 LOAD_GLOBAL             47 (NULL + bool)
+            488 LOAD_FAST               12 (use_legacy_model)
+            490 PRECALL                  1
+            494 CALL                     1
+            504 LOAD_FAST                0 (self)
+            506 STORE_ATTR              24 (use_legacy_model)
+
+346         516 NOP
+
+347         518 LOAD_FAST               13 (image_model_name)
+            520 POP_JUMP_FORWARD_IF_NONE    33 (to 588)
+            522 LOAD_GLOBAL             51 (NULL + str)
+            534 LOAD_FAST               13 (image_model_name)
+            536 PRECALL                  1
+            540 CALL                     1
+            550 LOAD_METHOD             26 (strip)
+            572 PRECALL                  0
+            576 CALL                     0
+            586 JUMP_FORWARD             1 (to 590)
+        >>  588 LOAD_CONST               0 (None)
+        >>  590 LOAD_FAST                0 (self)
+            592 STORE_ATTR              27 (image_model_name)
+            602 JUMP_FORWARD            23 (to 650)
+        >>  604 PUSH_EXC_INFO
+
+348         606 LOAD_GLOBAL             56 (Exception)
+            618 CHECK_EXC_MATCH
+            620 POP_JUMP_FORWARD_IF_FALSE    10 (to 642)
+            622 POP_TOP
+
+349         624 LOAD_CONST               0 (None)
+            626 LOAD_FAST                0 (self)
+            628 STORE_ATTR              27 (image_model_name)
+            638 POP_EXCEPT
+            640 JUMP_FORWARD             4 (to 650)
+
+348     >>  642 RERAISE                  0
+        >>  644 COPY                     3
+            646 POP_EXCEPT
+            648 RERAISE                  1
+
+351     >>  650 LOAD_FAST               14 (upscale_mode)
+            652 LOAD_FAST                0 (self)
+            654 STORE_ATTR              29 (upscale_mode)
+
+352         664 LOAD_GLOBAL             60 (logger)
+            676 LOAD_METHOD             31 (info)
+            698 LOAD_CONST               5 ('🖼️ [CLIENT] upscale_mode=')
+            700 LOAD_FAST                0 (self)
+            702 LOAD_ATTR               29 (upscale_mode)
+            712 FORMAT_VALUE             0
+            714 LOAD_CONST               6 (', use_legacy_model=')
+            716 LOAD_FAST                0 (self)
+            718 LOAD_ATTR               24 (use_legacy_model)
+            728 FORMAT_VALUE             0
+            730 LOAD_CONST               7 (', image_model_name=')
+            732 LOAD_FAST                0 (self)
+            734 LOAD_ATTR               27 (image_model_name)
+            744 FORMAT_VALUE             0
+            746 BUILD_STRING             6
+            748 PRECALL                  1
+            752 CALL                     1
+            762 POP_TOP
+
+355         764 LOAD_GLOBAL             33 (NULL + asyncio)
+            776 LOAD_ATTR               32 (Queue)
+            786 PRECALL                  0
+            790 CALL                     0
+            800 LOAD_FAST                0 (self)
+            802 STORE_ATTR              33 (queued_response_queue)
+
+356         812 LOAD_GLOBAL             33 (NULL + asyncio)
+            824 LOAD_ATTR               32 (Queue)
+            834 PRECALL                  0
+            838 CALL                     0
+            848 LOAD_FAST                0 (self)
+            850 STORE_ATTR              34 (result_response_queue)
+
+358         860 NOP
+
+359         862 LOAD_GLOBAL             60 (logger)
+            874 LOAD_METHOD             31 (info)
+            896 LOAD_CONST               8 ('🔗 Connecting to: ')
+            898 LOAD_FAST                0 (self)
+            900 LOAD_ATTR               35 (server_url)
+            910 FORMAT_VALUE             0
+            912 BUILD_STRING             2
+            914 PRECALL                  1
+            918 CALL                     1
+            928 POP_TOP
+
+360         930 LOAD_FAST                5 (progress_callback)
+            932 POP_JUMP_FORWARD_IF_FALSE    26 (to 986)
+
+361         934 PUSH_NULL
+            936 LOAD_FAST                5 (progress_callback)
+            938 LOAD_CONST               1 (0)
+            940 LOAD_GLOBAL              5 (NULL + len)
+            952 LOAD_FAST                1 (prompts)
+            954 PRECALL                  1
+            958 CALL                     1
+            968 LOAD_CONST               9 ('Đang kết nối WebSocket...')
+            970 PRECALL                  3
+            974 CALL                     3
+            984 POP_TOP
+
+362     >>  986 LOAD_GLOBAL              5 (NULL + len)
+            998 LOAD_FAST                1 (prompts)
+           1000 PRECALL                  1
+           1004 CALL                     1
+           1014 LOAD_CONST              10 (50)
+           1016 COMPARE_OP               4 (>)
+           1022 POP_JUMP_FORWARD_IF_FALSE     2 (to 1028)
+           1024 LOAD_CONST              11 (90)
+           1026 JUMP_FORWARD             1 (to 1030)
+        >> 1028 LOAD_CONST              12 (60)
+        >> 1030 STORE_FAST              15 (ping_interval)
+
+363        1032 LOAD_GLOBAL              5 (NULL + len)
+           1044 LOAD_FAST                1 (prompts)
+           1046 PRECALL                  1
+           1050 CALL                     1
+           1060 LOAD_CONST              10 (50)
+           1062 COMPARE_OP               4 (>)
+           1068 POP_JUMP_FORWARD_IF_FALSE     2 (to 1074)
+           1070 LOAD_CONST              13 (45)
+           1072 JUMP_FORWARD             1 (to 1076)
+        >> 1074 LOAD_CONST              14 (30)
+        >> 1076 STORE_FAST              16 (ping_timeout)
+
+364        1078 LOAD_CONST              14 (30)
+           1080 STORE_FAST              17 (open_timeout)
+
+365        1082 LOAD_GLOBAL             60 (logger)
+           1094 LOAD_METHOD             31 (info)
+           1116 LOAD_CONST              15 ('🔧 Producer-Consumer WebSocket settings: ping_interval=')
+           1118 LOAD_FAST               15 (ping_interval)
+           1120 FORMAT_VALUE             0
+           1122 LOAD_CONST              16 ('s, ping_timeout=')
+           1124 LOAD_FAST               16 (ping_timeout)
+           1126 FORMAT_VALUE             0
+           1128 LOAD_CONST              17 ('s')
+           1130 BUILD_STRING             5
+           1132 PRECALL                  1
+           1136 CALL                     1
+           1146 POP_TOP
+
+368        1148 LOAD_CONST               0 (None)
+           1150 STORE_FAST              18 (ssl_ctx)
+
+369        1152 NOP
+
+371        1154 LOAD_GLOBAL             51 (NULL + str)
+           1166 LOAD_FAST                0 (self)
+           1168 LOAD_ATTR               35 (server_url)
+           1178 PRECALL                  1
+           1182 CALL                     1
+           1192 LOAD_METHOD             36 (lower)
+           1214 PRECALL                  0
+           1218 CALL                     0
+           1228 LOAD_METHOD             37 (startswith)
+           1250 LOAD_CONST              18 ('wss://')
+           1252 PRECALL                  1
+           1256 CALL                     1
+           1266 POP_JUMP_FORWARD_IF_FALSE   147 (to 1562)
+
+373        1268 NOP
+
+374        1270 LOAD_CONST               1 (0)
+           1272 LOAD_CONST               0 (None)
+           1274 IMPORT_NAME             38 (certifi)
+           1276 STORE_FAST              19 (certifi)
+
+375        1278 LOAD_FAST               19 (certifi)
+           1280 LOAD_METHOD             39 (where)
+           1302 PRECALL                  0
+           1306 CALL                     0
+           1316 STORE_FAST              20 (cafile)
+
+376        1318 LOAD_GLOBAL             60 (logger)
+           1330 LOAD_METHOD             31 (info)
+           1352 LOAD_CONST              19 ('🔐 Using certifi CA bundle for WebSocket SSL: ')
+           1354 LOAD_FAST               20 (cafile)
+           1356 FORMAT_VALUE             0
+           1358 BUILD_STRING             2
+           1360 PRECALL                  1
+           1364 CALL                     1
+           1374 POP_TOP
+
+377        1376 LOAD_GLOBAL             81 (NULL + ssl)
+           1388 LOAD_ATTR               41 (create_default_context)
+           1398 LOAD_FAST               20 (cafile)
+           1400 KW_NAMES                20
+           1402 PRECALL                  1
+           1406 CALL                     1
+           1416 STORE_FAST              18 (ssl_ctx)
+           1418 JUMP_FORWARD            71 (to 1562)
+        >> 1420 PUSH_EXC_INFO
+
+378        1422 LOAD_GLOBAL             56 (Exception)
+           1434 CHECK_EXC_MATCH
+           1436 POP_JUMP_FORWARD_IF_FALSE    58 (to 1554)
+           1438 STORE_FAST              21 (e)
+
+379        1440 LOAD_GLOBAL             60 (logger)
+           1452 LOAD_METHOD             42 (warning)
+           1474 LOAD_CONST              21 ('⚠️ Could not use certifi CA bundle, fallback to system default: ')
+           1476 LOAD_FAST               21 (e)
+           1478 FORMAT_VALUE             0
+           1480 BUILD_STRING             2
+           1482 PRECALL                  1
+           1486 CALL                     1
+           1496 POP_TOP
+
+380        1498 LOAD_GLOBAL             81 (NULL + ssl)
+           1510 LOAD_ATTR               41 (create_default_context)
+           1520 PRECALL                  0
+           1524 CALL                     0
+           1534 STORE_FAST              18 (ssl_ctx)
+           1536 POP_EXCEPT
+           1538 LOAD_CONST               0 (None)
+           1540 STORE_FAST              21 (e)
+           1542 DELETE_FAST             21 (e)
+           1544 JUMP_FORWARD             8 (to 1562)
+        >> 1546 LOAD_CONST               0 (None)
+           1548 STORE_FAST              21 (e)
+           1550 DELETE_FAST             21 (e)
+           1552 RERAISE                  1
+
+378     >> 1554 RERAISE                  0
+        >> 1556 COPY                     3
+           1558 POP_EXCEPT
+           1560 RERAISE                  1
+        >> 1562 JUMP_FORWARD            54 (to 1672)
+        >> 1564 PUSH_EXC_INFO
+
+381        1566 LOAD_GLOBAL             56 (Exception)
+           1578 CHECK_EXC_MATCH
+           1580 POP_JUMP_FORWARD_IF_FALSE    41 (to 1664)
+           1582 STORE_FAST              22 (ssl_err)
+
+382        1584 LOAD_GLOBAL             60 (logger)
+           1596 LOAD_METHOD             42 (warning)
+           1618 LOAD_CONST              22 ('⚠️ Failed to prepare SSL context, fallback to default (may cause verify issues): ')
+           1620 LOAD_FAST               22 (ssl_err)
+           1622 FORMAT_VALUE             0
+           1624 BUILD_STRING             2
+           1626 PRECALL                  1
+           1630 CALL                     1
+           1640 POP_TOP
+
+383        1642 LOAD_CONST               0 (None)
+           1644 STORE_FAST              18 (ssl_ctx)
+           1646 POP_EXCEPT
+           1648 LOAD_CONST               0 (None)
+           1650 STORE_FAST              22 (ssl_err)
+           1652 DELETE_FAST             22 (ssl_err)
+           1654 JUMP_FORWARD             8 (to 1672)
+        >> 1656 LOAD_CONST               0 (None)
+           1658 STORE_FAST              22 (ssl_err)
+           1660 DELETE_FAST             22 (ssl_err)
+           1662 RERAISE                  1
+
+381     >> 1664 RERAISE                  0
+        >> 1666 COPY                     3
+           1668 POP_EXCEPT
+           1670 RERAISE                  1
+
+385     >> 1672 LOAD_GLOBAL             87 (NULL + websockets)
+           1684 LOAD_ATTR               44 (connect)
+
+386        1694 LOAD_FAST                0 (self)
+           1696 LOAD_ATTR               35 (server_url)
+
+387        1706 LOAD_FAST               15 (ping_interval)
+
+388        1708 LOAD_FAST               16 (ping_timeout)
+
+389        1710 LOAD_FAST               17 (open_timeout)
+
+390        1712 LOAD_CONST              23 (20971520)
+
+391        1714 LOAD_CONST               0 (None)
+
+392        1716 LOAD_FAST               18 (ssl_ctx)
+
+385        1718 KW_NAMES                24
+           1720 PRECALL                  7
+           1724 CALL                     7
+           1734 BEFORE_ASYNC_WITH
+           1736 GET_AWAITABLE            1
+           1738 LOAD_CONST               0 (None)
+        >> 1740 SEND                     3 (to 1748)
+           1742 YIELD_VALUE
+           1744 RESUME                   3
+           1746 JUMP_BACKWARD_NO_INTERRUPT     4 (to 1740)
+        >> 1748 NOP
+
+393        1750 STORE_FAST              23 (websocket)
+
+394        1752 LOAD_GLOBAL             60 (logger)
+           1764 LOAD_METHOD             31 (info)
+           1786 LOAD_CONST              25 ('✅ WebSocket connected successfully')
+           1788 PRECALL                  1
+           1792 CALL                     1
+           1802 POP_TOP
+
+395        1804 LOAD_FAST                5 (progress_callback)
+           1806 POP_JUMP_FORWARD_IF_FALSE    26 (to 1860)
+
+396        1808 PUSH_NULL
+           1810 LOAD_FAST                5 (progress_callback)
+           1812 LOAD_CONST               1 (0)
+           1814 LOAD_GLOBAL              5 (NULL + len)
+           1826 LOAD_FAST                1 (prompts)
+           1828 PRECALL                  1
+           1832 CALL                     1
+           1842 LOAD_CONST              26 ('Đang đăng ký với server...')
+           1844 PRECALL                  3
+           1848 CALL                     3
+           1858 POP_TOP
+
+398     >> 1860 LOAD_CONST              27 ('register')
+
+399        1862 LOAD_CONST              28 ('license_key')
+           1864 LOAD_FAST                0 (self)
+           1866 LOAD_ATTR               45 (license_key)
+           1876 BUILD_MAP                1
+
+397        1878 LOAD_CONST              29 (('event', 'data'))
+           1880 BUILD_CONST_KEY_MAP      2
+           1882 STORE_FAST              24 (register_message)
+
+401        1884 LOAD_FAST               23 (websocket)
+           1886 LOAD_METHOD             46 (send)
+           1908 LOAD_GLOBAL             95 (NULL + json)
+           1920 LOAD_ATTR               48 (dumps)
+           1930 LOAD_FAST               24 (register_message)
+           1932 PRECALL                  1
+           1936 CALL                     1
+           1946 PRECALL                  1
+           1950 CALL                     1
+           1960 GET_AWAITABLE            0
+           1962 LOAD_CONST               0 (None)
+        >> 1964 SEND                     3 (to 1972)
+           1966 YIELD_VALUE
+           1968 RESUME                   3
+           1970 JUMP_BACKWARD_NO_INTERRUPT     4 (to 1964)
+        >> 1972 POP_TOP
+
+402        1974 LOAD_FAST               23 (websocket)
+           1976 LOAD_METHOD             49 (recv)
+           1998 PRECALL                  0
+           2002 CALL                     0
+           2012 GET_AWAITABLE            0
+           2014 LOAD_CONST               0 (None)
+        >> 2016 SEND                     3 (to 2024)
+           2018 YIELD_VALUE
+           2020 RESUME                   3
+           2022 JUMP_BACKWARD_NO_INTERRUPT     4 (to 2016)
+        >> 2024 STORE_FAST              25 (response)
+
+403        2026 LOAD_GLOBAL             95 (NULL + json)
+           2038 LOAD_ATTR               50 (loads)
+           2048 LOAD_FAST               25 (response)
+           2050 PRECALL                  1
+           2054 CALL                     1
+           2064 STORE_FAST              26 (response_data)
+
+404        2066 LOAD_FAST               26 (response_data)
+           2068 LOAD_METHOD             51 (get)
+           2090 LOAD_CONST              30 ('event')
+           2092 PRECALL                  1
+           2096 CALL                     1
+           2106 LOAD_CONST              31 ('registered')
+           2108 COMPARE_OP               3 (!=)
+           2114 POP_JUMP_FORWARD_IF_FALSE    99 (to 2314)
+
+405        2116 LOAD_CONST              32 ('Registration failed: ')
+           2118 LOAD_FAST               26 (response_data)
+           2120 FORMAT_VALUE             0
+           2122 BUILD_STRING             2
+           2124 STORE_FAST              27 (error_msg)
+
+406        2126 LOAD_GLOBAL             60 (logger)
+           2138 LOAD_METHOD             52 (error)
+           2160 LOAD_CONST              33 ('❌ ')
+           2162 LOAD_FAST               27 (error_msg)
+           2164 FORMAT_VALUE             0
+           2166 BUILD_STRING             2
+           2168 PRECALL                  1
+           2172 CALL                     1
+           2182 POP_TOP
+
+407        2184 LOAD_FAST                6 (error_callback)
+           2186 POP_JUMP_FORWARD_IF_FALSE    11 (to 2210)
+
+408        2188 PUSH_NULL
+           2190 LOAD_FAST                6 (error_callback)
+           2192 LOAD_FAST               27 (error_msg)
+           2194 PRECALL                  1
+           2198 CALL                     1
+           2208 POP_TOP
+
+410     >> 2210 LOAD_CONST               3 (False)
+
+411        2212 LOAD_FAST               27 (error_msg)
+
+412        2214 LOAD_GLOBAL              5 (NULL + len)
+           2226 LOAD_FAST                1 (prompts)
+           2228 PRECALL                  1
+           2232 CALL                     1
+
+413        2242 LOAD_CONST               1 (0)
+
+414        2244 LOAD_GLOBAL              5 (NULL + len)
+           2256 LOAD_FAST                1 (prompts)
+           2258 PRECALL                  1
+           2262 CALL                     1
+
+409        2272 LOAD_CONST              34 (('success', 'error', 'total_prompts', 'completed', 'failed'))
+           2274 BUILD_CONST_KEY_MAP      5
+
+385        2276 SWAP                     2
+           2278 LOAD_CONST               0 (None)
+           2280 LOAD_CONST               0 (None)
+           2282 LOAD_CONST               0 (None)
+           2284 PRECALL                  2
+           2288 CALL                     2
+           2298 GET_AWAITABLE            2
+           2300 LOAD_CONST               0 (None)
+        >> 2302 SEND                     3 (to 2310)
+           2304 YIELD_VALUE
+           2306 RESUME                   3
+           2308 JUMP_BACKWARD_NO_INTERRUPT     4 (to 2302)
+        >> 2310 POP_TOP
+           2312 RETURN_VALUE
+
+416     >> 2314 LOAD_FAST               26 (response_data)
+           2316 LOAD_METHOD             51 (get)
+           2338 LOAD_CONST              35 ('data')
+           2340 BUILD_MAP                0
+           2342 PRECALL                  2
+           2346 CALL                     2
+           2356 LOAD_METHOD             51 (get)
+           2378 LOAD_CONST              36 ('client_id')
+           2380 PRECALL                  1
+           2384 CALL                     1
+           2394 STORE_FAST              28 (client_id)
+
+417        2396 LOAD_GLOBAL             60 (logger)
+           2408 LOAD_METHOD             31 (info)
+           2430 LOAD_CONST              37 ('✅ Registration successful, client_id: ')
+           2432 LOAD_FAST               28 (client_id)
+           2434 FORMAT_VALUE             0
+           2436 BUILD_STRING             2
+           2438 PRECALL                  1
+           2442 CALL                     1
+           2452 POP_TOP
+
+418        2454 LOAD_GLOBAL             60 (logger)
+           2466 LOAD_METHOD             31 (info)
+           2488 LOAD_CONST              38 ('📝 Preparing ')
+           2490 LOAD_GLOBAL              5 (NULL + len)
+           2502 LOAD_FAST                1 (prompts)
+           2504 PRECALL                  1
+           2508 CALL                     1
+           2518 FORMAT_VALUE             0
+           2520 LOAD_CONST              39 (' prompts for producer-consumer processing (seed=')
+           2522 LOAD_FAST                4 (seed)
+           2524 FORMAT_VALUE             0
+           2526 LOAD_CONST              40 (')')
+           2528 BUILD_STRING             5
+           2530 PRECALL                  1
+           2534 CALL                     1
+           2544 POP_TOP
+
+420        2546 BUILD_MAP                0
+           2548 LOAD_FAST                0 (self)
+           2550 STORE_ATTR              53 (_prompt_id_to_index)
+
+422        2560 LOAD_GLOBAL            109 (NULL + enumerate)
+           2572 LOAD_FAST                1 (prompts)
+           2574 PRECALL                  1
+           2578 CALL                     1
+           2588 GET_ITER
+        >> 2590 EXTENDED_ARG             1
+           2592 FOR_ITER               408 (to 3410)
+           2594 UNPACK_SEQUENCE          2
+           2598 STORE_FAST              29 (i)
+           2600 STORE_FAST              30 (prompt)
+
+424        2602 LOAD_GLOBAL            111 (NULL + hasattr)
+           2614 LOAD_FAST                0 (self)
+           2616 LOAD_CONST              41 ('original_prompts')
+           2618 PRECALL                  2
+           2622 CALL                     2
+           2632 POP_JUMP_FORWARD_IF_FALSE    37 (to 2708)
+           2634 LOAD_FAST               29 (i)
+           2636 LOAD_GLOBAL              5 (NULL + len)
+           2648 LOAD_FAST                0 (self)
+           2650 LOAD_ATTR               12 (original_prompts)
+           2660 PRECALL                  1
+           2664 CALL                     1
+           2674 COMPARE_OP               0 (<)
+           2680 POP_JUMP_FORWARD_IF_FALSE    13 (to 2708)
+           2682 LOAD_FAST                0 (self)
+           2684 LOAD_ATTR               12 (original_prompts)
+           2694 LOAD_FAST               29 (i)
+           2696 BINARY_SUBSCR
+           2706 JUMP_FORWARD             1 (to 2710)
+        >> 2708 LOAD_FAST               30 (prompt)
+        >> 2710 STORE_FAST              31 (original_prompt)
+
+426        2712 LOAD_CONST               0 (None)
+           2714 STORE_FAST              32 (attachment)
+
+427        2716 NOP
+
+428        2718 LOAD_GLOBAL            111 (NULL + hasattr)
+           2730 LOAD_FAST                0 (self)
+           2732 LOAD_CONST              42 ('attachments_by_index')
+           2734 PRECALL                  2
+           2738 CALL                     2
+           2748 POP_JUMP_FORWARD_IF_FALSE    50 (to 2850)
+           2750 LOAD_FAST               29 (i)
+           2752 LOAD_GLOBAL              5 (NULL + len)
+           2764 LOAD_FAST                0 (self)
+           2766 LOAD_ATTR               15 (attachments_by_index)
+           2776 PRECALL                  1
+           2780 CALL                     1
+           2790 COMPARE_OP               0 (<)
+           2796 POP_JUMP_FORWARD_IF_FALSE    26 (to 2850)
+
+429        2798 LOAD_GLOBAL            113 (NULL + int)
+           2810 LOAD_FAST                0 (self)
+           2812 LOAD_ATTR               15 (attachments_by_index)
+           2822 LOAD_FAST               29 (i)
+           2824 BINARY_SUBSCR
+           2834 PRECALL                  1
+           2838 CALL                     1
+           2848 STORE_FAST              32 (attachment)
+        >> 2850 JUMP_FORWARD            18 (to 2888)
+        >> 2852 PUSH_EXC_INFO
+
+430        2854 LOAD_GLOBAL             56 (Exception)
+           2866 CHECK_EXC_MATCH
+           2868 POP_JUMP_FORWARD_IF_FALSE     5 (to 2880)
+           2870 POP_TOP
+
+431        2872 LOAD_CONST               0 (None)
+           2874 STORE_FAST              32 (attachment)
+           2876 POP_EXCEPT
+           2878 JUMP_FORWARD             4 (to 2888)
+
+430     >> 2880 RERAISE                  0
+        >> 2882 COPY                     3
+           2884 POP_EXCEPT
+           2886 RERAISE                  1
+
+433     >> 2888 NOP
+
+434        2890 BUILD_LIST               0
+           2892 STORE_FAST              33 (order_dbg)
+
+435        2894 LOAD_GLOBAL            111 (NULL + hasattr)
+           2906 LOAD_FAST                0 (self)
+           2908 LOAD_CONST              43 ('attachments_order_by_index')
+           2910 PRECALL                  2
+           2914 CALL                     2
+           2924 POP_JUMP_FORWARD_IF_FALSE    52 (to 3030)
+           2926 LOAD_FAST               29 (i)
+           2928 LOAD_GLOBAL              5 (NULL + len)
+           2940 LOAD_FAST                0 (self)
+           2942 LOAD_ATTR               19 (attachments_order_by_index)
+           2952 PRECALL                  1
+           2956 CALL                     1
+           2966 COMPARE_OP               0 (<)
+           2972 POP_JUMP_FORWARD_IF_FALSE    28 (to 3030)
+
+436        2974 LOAD_GLOBAL            115 (NULL + list)
+           2986 LOAD_FAST                0 (self)
+           2988 LOAD_ATTR               19 (attachments_order_by_index)
+           2998 LOAD_FAST               29 (i)
+           3000 BINARY_SUBSCR
+           3010 JUMP_IF_TRUE_OR_POP      1 (to 3014)
+           3012 BUILD_LIST               0
+        >> 3014 PRECALL                  1
+           3018 CALL                     1
+           3028 STORE_FAST              33 (order_dbg)
+
+437     >> 3030 LOAD_GLOBAL            117 (NULL + logging)
+           3042 LOAD_ATTR               31 (info)
+           3052 LOAD_CONST              44 ('[ATTACH][PROMPT-MAP] line=')
+           3054 LOAD_FAST               29 (i)
+           3056 LOAD_CONST              45 (1)
+           3058 BINARY_OP                0 (+)
+           3062 FORMAT_VALUE             0
+           3064 LOAD_CONST              46 (' bitset=')
+           3066 LOAD_FAST               32 (attachment)
+           3068 FORMAT_VALUE             0
+           3070 LOAD_CONST              47 (' order=')
+           3072 LOAD_FAST               33 (order_dbg)
+           3074 FORMAT_VALUE             0
+           3076 BUILD_STRING             6
+           3078 PRECALL                  1
+           3082 CALL                     1
+           3092 POP_TOP
+           3094 JUMP_FORWARD            16 (to 3128)
+        >> 3096 PUSH_EXC_INFO
+
+438        3098 LOAD_GLOBAL             56 (Exception)
+           3110 CHECK_EXC_MATCH
+           3112 POP_JUMP_FORWARD_IF_FALSE     3 (to 3120)
+           3114 POP_TOP
+
+439        3116 POP_EXCEPT
+           3118 JUMP_FORWARD             4 (to 3128)
+
+438     >> 3120 RERAISE                  0
+        >> 3122 COPY                     3
+           3124 POP_EXCEPT
+           3126 RERAISE                  1
+
+441     >> 3128 LOAD_CONST              48 ('pc_')
+           3130 LOAD_GLOBAL            119 (NULL + uuid)
+           3142 LOAD_ATTR               60 (uuid4)
+           3152 PRECALL                  0
+           3156 CALL                     0
+           3166 FORMAT_VALUE             0
+           3168 LOAD_CONST              49 ('_')
+           3170 LOAD_FAST               29 (i)
+           3172 FORMAT_VALUE             0
+           3174 BUILD_STRING             4
+           3176 STORE_FAST              34 (prompt_id)
+
+443        3178 LOAD_FAST               29 (i)
+           3180 LOAD_FAST                0 (self)
+           3182 LOAD_ATTR               53 (_prompt_id_to_index)
+           3192 LOAD_FAST               34 (prompt_id)
+           3194 STORE_SUBSCR
+
+446        3198 LOAD_FAST               34 (prompt_id)
+
+447        3200 LOAD_FAST               30 (prompt)
+
+448        3202 LOAD_FAST                3 (aspect_ratio)
+
+449        3204 LOAD_FAST                4 (seed)
+
+450        3206 LOAD_FAST               29 (i)
+
+451        3208 LOAD_FAST               31 (original_prompt)
+
+452        3210 LOAD_FAST               32 (attachment)
+
+445        3212 LOAD_CONST              50 (('prompt_id', 'prompt', 'aspect_ratio', 'seed', 'index', 'original_prompt', 'attachment'))
+           3214 BUILD_CONST_KEY_MAP      7
+           3216 STORE_FAST              35 (prompt_data)
+
+454        3218 NOP
+
+455        3220 LOAD_GLOBAL             60 (logger)
+           3232 LOAD_METHOD             31 (info)
+
+456        3254 LOAD_CONST              51 ('[CLIENT][PROMPT] line=')
+           3256 LOAD_FAST               29 (i)
+           3258 LOAD_CONST              45 (1)
+           3260 BINARY_OP                0 (+)
+           3264 FORMAT_VALUE             0
+           3266 LOAD_CONST              52 (' prompt_id=')
+           3268 LOAD_FAST               35 (prompt_data)
+           3270 LOAD_CONST              53 ('prompt_id')
+           3272 BINARY_SUBSCR
+           3282 FORMAT_VALUE             0
+           3284 LOAD_CONST              54 (' seed=')
+           3286 LOAD_FAST                4 (seed)
+           3288 FORMAT_VALUE             0
+           3290 BUILD_STRING             6
+
+455        3292 PRECALL                  1
+           3296 CALL                     1
+           3306 POP_TOP
+           3308 JUMP_FORWARD            16 (to 3342)
+        >> 3310 PUSH_EXC_INFO
+
+458        3312 LOAD_GLOBAL             56 (Exception)
+           3324 CHECK_EXC_MATCH
+           3326 POP_JUMP_FORWARD_IF_FALSE     3 (to 3334)
+           3328 POP_TOP
+
+459        3330 POP_EXCEPT
+           3332 JUMP_FORWARD             4 (to 3342)
+
+458     >> 3334 RERAISE                  0
+        >> 3336 COPY                     3
+           3338 POP_EXCEPT
+           3340 RERAISE                  1
+
+460     >> 3342 LOAD_FAST                0 (self)
+           3344 LOAD_ATTR               61 (send_queue)
+           3354 LOAD_METHOD             62 (put)
+           3376 LOAD_FAST               35 (prompt_data)
+           3378 PRECALL                  1
+           3382 CALL                     1
+           3392 GET_AWAITABLE            0
+           3394 LOAD_CONST               0 (None)
+        >> 3396 SEND                     3 (to 3404)
+           3398 YIELD_VALUE
+           3400 RESUME                   3
+           3402 JUMP_BACKWARD_NO_INTERRUPT     4 (to 3396)
+        >> 3404 POP_TOP
+           3406 EXTENDED_ARG             1
+           3408 JUMP_BACKWARD          410 (to 2590)
+
+461     >> 3410 LOAD_GLOBAL             60 (logger)
+           3422 LOAD_METHOD             31 (info)
+           3444 LOAD_CONST              55 ('🔄 Starting Producer-Consumer tasks...')
+           3446 PRECALL                  1
+           3450 CALL                     1
+           3460 POP_TOP
+
+463        3462 LOAD_GLOBAL             33 (NULL + asyncio)
+           3474 LOAD_ATTR               63 (create_task)
+
+464        3484 LOAD_FAST                0 (self)
+           3486 LOAD_METHOD             64 (_message_dispatcher_task)
+           3508 LOAD_FAST               23 (websocket)
+           3510 PRECALL                  1
+           3514 CALL                     1
+
+463        3524 PRECALL                  1
+           3528 CALL                     1
+           3538 STORE_FAST              36 (dispatcher_task)
+
+466        3540 LOAD_GLOBAL             33 (NULL + asyncio)
+           3552 LOAD_ATTR               63 (create_task)
+
+467        3562 LOAD_FAST                0 (self)
+           3564 LOAD_METHOD             65 (_producer_task)
+           3586 LOAD_FAST               23 (websocket)
+           3588 LOAD_FAST                5 (progress_callback)
+           3590 PRECALL                  2
+           3594 CALL                     2
+
+466        3604 PRECALL                  1
+           3608 CALL                     1
+           3618 STORE_FAST              37 (producer_task)
+
+469        3620 LOAD_GLOBAL             33 (NULL + asyncio)
+           3632 LOAD_ATTR               63 (create_task)
+
+470        3642 LOAD_FAST                0 (self)
+           3644 LOAD_METHOD             66 (_consumer_task)
+           3666 LOAD_FAST                5 (progress_callback)
+           3668 PRECALL                  1
+           3672 CALL                     1
+
+469        3682 PRECALL                  1
+           3686 CALL                     1
+           3696 STORE_FAST              38 (consumer_task)
+
+474        3698 LOAD_CONST              56 (10)
+           3700 STORE_FAST              39 (timeout_minutes)
+
+475        3702 LOAD_GLOBAL             60 (logger)
+           3714 LOAD_METHOD             31 (info)
+           3736 LOAD_CONST              57 ('⏳ Waiting for all results, timeout: ')
+           3738 LOAD_FAST               39 (timeout_minutes)
+           3740 FORMAT_VALUE             0
+           3742 LOAD_CONST              58 (' minutes')
+           3744 BUILD_STRING             3
+           3746 PRECALL                  1
+           3750 CALL                     1
+           3760 POP_TOP
+
+477        3762 NOP
+
+479        3764 LOAD_GLOBAL             33 (NULL + asyncio)
+           3776 LOAD_ATTR               67 (wait_for)
+
+480        3786 LOAD_FAST                0 (self)
+           3788 LOAD_ATTR               18 (all_results_received)
+           3798 LOAD_METHOD             68 (wait)
+           3820 PRECALL                  0
+           3824 CALL                     0
+
+481        3834 LOAD_FAST               39 (timeout_minutes)
+           3836 LOAD_CONST              12 (60)
+           3838 BINARY_OP                5 (*)
+
+479        3842 KW_NAMES                59
+           3844 PRECALL                  2
+           3848 CALL                     2
+           3858 GET_AWAITABLE            0
+           3860 LOAD_CONST               0 (None)
+        >> 3862 SEND                     3 (to 3870)
+           3864 YIELD_VALUE
+           3866 RESUME                   3
+           3868 JUMP_BACKWARD_NO_INTERRUPT     4 (to 3862)
+        >> 3870 POP_TOP
+
+483        3872 LOAD_GLOBAL             60 (logger)
+           3884 LOAD_METHOD             31 (info)
+           3906 LOAD_CONST              60 ('✅ All results received event triggered')
+           3908 PRECALL                  1
+           3912 CALL                     1
+           3922 POP_TOP
+           3924 JUMP_FORWARD            51 (to 4028)
+        >> 3926 PUSH_EXC_INFO
+
+484        3928 LOAD_GLOBAL             32 (asyncio)
+           3940 LOAD_ATTR               69 (TimeoutError)
+           3950 CHECK_EXC_MATCH
+           3952 POP_JUMP_FORWARD_IF_FALSE    33 (to 4020)
+           3954 POP_TOP
+
+485        3956 LOAD_GLOBAL             60 (logger)
+           3968 LOAD_METHOD             42 (warning)
+           3990 LOAD_CONST              61 ('⚠️ Timeout waiting for results after ')
+           3992 LOAD_FAST               39 (timeout_minutes)
+           3994 FORMAT_VALUE             0
+           3996 LOAD_CONST              58 (' minutes')
+           3998 BUILD_STRING             3
+           4000 PRECALL                  1
+           4004 CALL                     1
+           4014 POP_TOP
+           4016 POP_EXCEPT
+           4018 JUMP_FORWARD             4 (to 4028)
+
+484     >> 4020 RERAISE                  0
+        >> 4022 COPY                     3
+           4024 POP_EXCEPT
+           4026 RERAISE                  1
+
+488     >> 4028 LOAD_CONST               3 (False)
+           4030 LOAD_FAST                0 (self)
+           4032 STORE_ATTR               8 (is_generating)
+
+489        4042 LOAD_GLOBAL             60 (logger)
+           4054 LOAD_METHOD             31 (info)
+           4076 LOAD_CONST              62 ('🔚 All tasks completed or cancelled. sent_count=')
+           4078 LOAD_FAST                0 (self)
+           4080 LOAD_ATTR                4 (sent_count)
+           4090 FORMAT_VALUE             0
+           4092 LOAD_CONST              63 (', received_count=')
+           4094 LOAD_FAST                0 (self)
+           4096 LOAD_ATTR                5 (received_count)
+           4106 FORMAT_VALUE             0
+           4108 LOAD_CONST              64 (', processed_count=')
+           4110 LOAD_FAST                0 (self)
+           4112 LOAD_ATTR                7 (processed_count)
+           4122 FORMAT_VALUE             0
+           4124 LOAD_CONST              65 (', failed_count=')
+           4126 LOAD_FAST                0 (self)
+           4128 LOAD_ATTR                6 (failed_count)
+           4138 FORMAT_VALUE             0
+           4140 BUILD_STRING             8
+           4142 PRECALL                  1
+           4146 CALL                     1
+           4156 POP_TOP
+
+492        4158 LOAD_GLOBAL             60 (logger)
+           4170 LOAD_METHOD             31 (info)
+           4192 LOAD_CONST              66 ('🔌 Closing WebSocket connection explicitly')
+           4194 PRECALL                  1
+           4198 CALL                     1
+           4208 POP_TOP
+
+493        4210 LOAD_FAST               23 (websocket)
+           4212 LOAD_METHOD             70 (close)
+           4234 PRECALL                  0
+           4238 CALL                     0
+           4248 GET_AWAITABLE            0
+           4250 LOAD_CONST               0 (None)
+        >> 4252 SEND                     3 (to 4260)
+           4254 YIELD_VALUE
+           4256 RESUME                   3
+           4258 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4252)
+        >> 4260 POP_TOP
+
+496        4262 LOAD_GLOBAL             33 (NULL + asyncio)
+           4274 LOAD_ATTR               71 (sleep)
+           4284 LOAD_CONST              67 (0.5)
+           4286 PRECALL                  1
+           4290 CALL                     1
+           4300 GET_AWAITABLE            0
+           4302 LOAD_CONST               0 (None)
+        >> 4304 SEND                     3 (to 4312)
+           4306 YIELD_VALUE
+           4308 RESUME                   3
+           4310 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4304)
+        >> 4312 POP_TOP
+
+499        4314 LOAD_FAST               36 (dispatcher_task)
+           4316 LOAD_FAST               37 (producer_task)
+           4318 LOAD_FAST               38 (consumer_task)
+           4320 BUILD_TUPLE              3
+           4322 GET_ITER
+        >> 4324 FOR_ITER                73 (to 4472)
+           4326 STORE_FAST              40 (task)
+
+500        4328 LOAD_FAST               40 (task)
+           4330 LOAD_METHOD             72 (done)
+           4352 PRECALL                  0
+           4356 CALL                     0
+           4366 POP_JUMP_FORWARD_IF_TRUE    51 (to 4470)
+
+501        4368 LOAD_FAST               40 (task)
+           4370 LOAD_METHOD             73 (cancel)
+           4392 PRECALL                  0
+           4396 CALL                     0
+           4406 POP_TOP
+
+502        4408 NOP
+
+503        4410 LOAD_FAST               40 (task)
+           4412 GET_AWAITABLE            0
+           4414 LOAD_CONST               0 (None)
+        >> 4416 SEND                     3 (to 4424)
+           4418 YIELD_VALUE
+           4420 RESUME                   3
+           4422 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4416)
+        >> 4424 POP_TOP
+           4426 JUMP_BACKWARD           52 (to 4324)
+        >> 4428 PUSH_EXC_INFO
+
+504        4430 LOAD_GLOBAL             32 (asyncio)
+           4442 LOAD_ATTR               74 (CancelledError)
+           4452 CHECK_EXC_MATCH
+           4454 POP_JUMP_FORWARD_IF_FALSE     3 (to 4462)
+           4456 POP_TOP
+
+505        4458 POP_EXCEPT
+           4460 JUMP_BACKWARD           69 (to 4324)
+
+504     >> 4462 RERAISE                  0
+        >> 4464 COPY                     3
+           4466 POP_EXCEPT
+           4468 RERAISE                  1
+
+500     >> 4470 JUMP_BACKWARD           74 (to 4324)
+
+507     >> 4472 LOAD_FAST                0 (self)
+           4474 LOAD_METHOD             75 (_process_final_results)
+           4496 LOAD_FAST                1 (prompts)
+           4498 LOAD_FAST                2 (output_dir)
+           4500 PRECALL                  2
+           4504 CALL                     2
+           4514 GET_AWAITABLE            0
+           4516 LOAD_CONST               0 (None)
+        >> 4518 SEND                     3 (to 4526)
+           4520 YIELD_VALUE
+           4522 RESUME                   3
+           4524 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4518)
+
+385     >> 4526 SWAP                     2
+           4528 LOAD_CONST               0 (None)
+           4530 LOAD_CONST               0 (None)
+           4532 LOAD_CONST               0 (None)
+           4534 PRECALL                  2
+           4538 CALL                     2
+           4548 GET_AWAITABLE            2
+           4550 LOAD_CONST               0 (None)
+        >> 4552 SEND                     3 (to 4560)
+           4554 YIELD_VALUE
+           4556 RESUME                   3
+           4558 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4552)
+        >> 4560 POP_TOP
+           4562 RETURN_VALUE
+        >> 4564 PUSH_EXC_INFO
+           4566 WITH_EXCEPT_START
+           4568 GET_AWAITABLE            2
+           4570 LOAD_CONST               0 (None)
+        >> 4572 SEND                     3 (to 4580)
+           4574 YIELD_VALUE
+           4576 RESUME                   3
+           4578 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4572)
+        >> 4580 POP_JUMP_FORWARD_IF_TRUE     4 (to 4590)
+           4582 RERAISE                  2
+        >> 4584 COPY                     3
+           4586 POP_EXCEPT
+           4588 RERAISE                  1
+        >> 4590 POP_TOP
+           4592 POP_EXCEPT
+           4594 POP_TOP
+           4596 POP_TOP
+           4598 LOAD_CONST               0 (None)
+           4600 RETURN_VALUE
+        >> 4602 PUSH_EXC_INFO
+
+508        4604 LOAD_GLOBAL             56 (Exception)
+           4616 CHECK_EXC_MATCH
+           4618 POP_JUMP_FORWARD_IF_FALSE   191 (to 5002)
+           4620 STORE_FAST              21 (e)
+
+510        4622 LOAD_CONST              68 ('Producer-Consumer WebSocket error: ')
+           4624 LOAD_FAST               21 (e)
+           4626 FORMAT_VALUE             0
+           4628 BUILD_STRING             2
+           4630 STORE_FAST              27 (error_msg)
+
+511        4632 LOAD_GLOBAL             60 (logger)
+           4644 LOAD_METHOD             52 (error)
+           4666 LOAD_CONST              33 ('❌ ')
+           4668 LOAD_FAST               27 (error_msg)
+           4670 FORMAT_VALUE             0
+           4672 BUILD_STRING             2
+           4674 PRECALL                  1
+           4678 CALL                     1
+           4688 POP_TOP
+
+512        4690 NOP
+
+513        4692 LOAD_CONST               3 (False)
+           4694 LOAD_FAST                0 (self)
+           4696 STORE_ATTR               8 (is_generating)
+
+514        4706 LOAD_FAST                0 (self)
+           4708 LOAD_METHOD             75 (_process_final_results)
+           4730 LOAD_FAST                1 (prompts)
+           4732 LOAD_FAST                2 (output_dir)
+           4734 PRECALL                  2
+           4738 CALL                     2
+           4748 GET_AWAITABLE            0
+           4750 LOAD_CONST               0 (None)
+        >> 4752 SEND                     3 (to 4760)
+           4754 YIELD_VALUE
+           4756 RESUME                   3
+           4758 JUMP_BACKWARD_NO_INTERRUPT     4 (to 4752)
+        >> 4760 STORE_FAST              41 (partial)
+
+516        4762 LOAD_FAST               27 (error_msg)
+           4764 LOAD_FAST               41 (partial)
+           4766 LOAD_CONST              69 ('error')
+           4768 STORE_SUBSCR
+
+517        4772 LOAD_FAST               41 (partial)
+           4774 SWAP                     2
+           4776 POP_EXCEPT
+           4778 LOAD_CONST               0 (None)
+           4780 STORE_FAST              21 (e)
+           4782 DELETE_FAST             21 (e)
+           4784 RETURN_VALUE
+        >> 4786 PUSH_EXC_INFO
+
+518        4788 LOAD_GLOBAL             56 (Exception)
+           4800 CHECK_EXC_MATCH
+           4802 POP_JUMP_FORWARD_IF_FALSE    91 (to 4986)
+           4804 STORE_FAST              42 (e2)
+
+519        4806 LOAD_GLOBAL             60 (logger)
+           4818 LOAD_METHOD             52 (error)
+           4840 LOAD_CONST              70 ('❌ Error when building partial results: ')
+           4842 LOAD_FAST               42 (e2)
+           4844 FORMAT_VALUE             0
+           4846 BUILD_STRING             2
+           4848 PRECALL                  1
+           4852 CALL                     1
+           4862 POP_TOP
+
+520        4864 LOAD_FAST                6 (error_callback)
+           4866 POP_JUMP_FORWARD_IF_FALSE    11 (to 4890)
+
+521        4868 PUSH_NULL
+           4870 LOAD_FAST                6 (error_callback)
+           4872 LOAD_FAST               27 (error_msg)
+           4874 PRECALL                  1
+           4878 CALL                     1
+           4888 POP_TOP
+
+523     >> 4890 LOAD_CONST               3 (False)
+
+524        4892 LOAD_FAST               27 (error_msg)
+
+525        4894 LOAD_GLOBAL              5 (NULL + len)
+           4906 LOAD_FAST                1 (prompts)
+           4908 PRECALL                  1
+           4912 CALL                     1
+
+526        4922 LOAD_CONST               1 (0)
+
+527        4924 LOAD_GLOBAL              5 (NULL + len)
+           4936 LOAD_FAST                1 (prompts)
+           4938 PRECALL                  1
+           4942 CALL                     1
+
+522        4952 LOAD_CONST              34 (('success', 'error', 'total_prompts', 'completed', 'failed'))
+           4954 BUILD_CONST_KEY_MAP      5
+           4956 SWAP                     2
+           4958 POP_EXCEPT
+           4960 LOAD_CONST               0 (None)
+           4962 STORE_FAST              42 (e2)
+           4964 DELETE_FAST             42 (e2)
+           4966 SWAP                     2
+           4968 POP_EXCEPT
+           4970 LOAD_CONST               0 (None)
+           4972 STORE_FAST              21 (e)
+           4974 DELETE_FAST             21 (e)
+           4976 RETURN_VALUE
+        >> 4978 LOAD_CONST               0 (None)
+           4980 STORE_FAST              42 (e2)
+           4982 DELETE_FAST             42 (e2)
+           4984 RERAISE                  1
+
+518     >> 4986 RERAISE                  0
+        >> 4988 COPY                     3
+           4990 POP_EXCEPT
+           4992 RERAISE                  1
+        >> 4994 LOAD_CONST               0 (None)
+           4996 STORE_FAST              21 (e)
+           4998 DELETE_FAST             21 (e)
+           5000 RERAISE                  1
+
+508     >> 5002 RERAISE                  0
+        >> 5004 COPY                     3
+           5006 POP_EXCEPT
+           5008 RERAISE                  1
+ExceptionTable:
+  518 to 600 -> 604 [0]
+  604 to 636 -> 644 [1] lasti
+  642 to 642 -> 644 [1] lasti
+  862 to 1150 -> 4602 [0]
+  1154 to 1266 -> 1564 [0]
+  1270 to 1416 -> 1420 [0]
+  1418 to 1418 -> 1564 [0]
+  1420 to 1438 -> 1556 [1] lasti
+  1440 to 1534 -> 1546 [1] lasti
+  1536 to 1544 -> 1564 [0]
+  1546 to 1554 -> 1556 [1] lasti
+  1556 to 1560 -> 1564 [0]
+  1562 to 1562 -> 4602 [0]
+  1564 to 1582 -> 1666 [1] lasti
+  1584 to 1644 -> 1656 [1] lasti
+  1646 to 1654 -> 4602 [0]
+  1656 to 1664 -> 1666 [1] lasti
+  1666 to 1746 -> 4602 [0]
+  1750 to 2274 -> 4564 [1] lasti
+  2276 to 2310 -> 4602 [0]
+  2314 to 2714 -> 4564 [1] lasti
+  2718 to 2848 -> 2852 [2]
+  2850 to 2850 -> 4564 [1] lasti
+  2852 to 2874 -> 2882 [3] lasti
+  2876 to 2878 -> 4564 [1] lasti
+  2880 to 2880 -> 2882 [3] lasti
+  2882 to 2886 -> 4564 [1] lasti
+  2890 to 3092 -> 3096 [2]
+  3094 to 3094 -> 4564 [1] lasti
+  3096 to 3114 -> 3122 [3] lasti
+  3116 to 3118 -> 4564 [1] lasti
+  3120 to 3120 -> 3122 [3] lasti
+  3122 to 3216 -> 4564 [1] lasti
+  3220 to 3306 -> 3310 [2]
+  3308 to 3308 -> 4564 [1] lasti
+  3310 to 3328 -> 3336 [3] lasti
+  3330 to 3332 -> 4564 [1] lasti
+  3334 to 3334 -> 3336 [3] lasti
+  3336 to 3760 -> 4564 [1] lasti
+  3764 to 3922 -> 3926 [1]
+  3924 to 3924 -> 4564 [1] lasti
+  3926 to 4014 -> 4022 [2] lasti
+  4016 to 4018 -> 4564 [1] lasti
+  4020 to 4020 -> 4022 [2] lasti
+  4022 to 4406 -> 4564 [1] lasti
+  4410 to 4424 -> 4428 [2]
+  4426 to 4426 -> 4564 [1] lasti
+  4428 to 4456 -> 4464 [3] lasti
+  4458 to 4460 -> 4564 [1] lasti
+  4462 to 4462 -> 4464 [3] lasti
+  4464 to 4524 -> 4564 [1] lasti
+  4526 to 4560 -> 4602 [0]
+  4564 to 4582 -> 4584 [3] lasti
+  4584 to 4588 -> 4602 [0]
+  4590 to 4590 -> 4584 [3] lasti
+  4592 to 4596 -> 4602 [0]
+  4602 to 4620 -> 5004 [1] lasti
+  4622 to 4688 -> 4994 [1] lasti
+  4692 to 4772 -> 4786 [1]
+  4774 to 4774 -> 5004 [1] lasti
+  4786 to 4804 -> 4988 [2] lasti
+  4806 to 4954 -> 4978 [2] lasti
+  4956 to 4956 -> 4988 [2] lasti
+  4958 to 4964 -> 4994 [1] lasti
+  4966 to 4966 -> 5004 [1] lasti
+  4978 to 4986 -> 4988 [2] lasti
+  4988 to 4992 -> 4994 [1] lasti
+  4994 to 5002 -> 5004 [1] lasti
+
+Disassembly of <code object <listcomp> at 0x104689a30, file "websocket_client_simple.pyc", line 336>:
+336           0 RESUME                   0
+              2 BUILD_LIST               0
+              4 LOAD_FAST                0 (.0)
+        >>    6 FOR_ITER                 4 (to 16)
+              8 STORE_FAST               1 (_)
+             10 BUILD_LIST               0
+             12 LIST_APPEND              2
+             14 JUMP_BACKWARD            5 (to 6)
+        >>   16 RETURN_VALUE

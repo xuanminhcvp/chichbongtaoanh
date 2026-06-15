@@ -1,0 +1,115 @@
+178           0 RESUME                   0
+
+180           2 NOP
+
+181           4 LOAD_GLOBAL              1 (NULL + str)
+             16 LOAD_FAST                1 (data)
+             18 LOAD_METHOD              1 (get)
+             40 LOAD_CONST               1 ('upload_id')
+             42 PRECALL                  1
+             46 CALL                     1
+             56 JUMP_IF_TRUE_OR_POP      1 (to 60)
+             58 LOAD_CONST               2 ('')
+        >>   60 PRECALL                  1
+             64 CALL                     1
+             74 LOAD_METHOD              2 (strip)
+             96 PRECALL                  0
+            100 CALL                     0
+            110 STORE_FAST               2 (uid)
+            112 JUMP_FORWARD            18 (to 150)
+        >>  114 PUSH_EXC_INFO
+
+182         116 LOAD_GLOBAL              6 (Exception)
+            128 CHECK_EXC_MATCH
+            130 POP_JUMP_FORWARD_IF_FALSE     5 (to 142)
+            132 POP_TOP
+
+183         134 LOAD_CONST               2 ('')
+            136 STORE_FAST               2 (uid)
+            138 POP_EXCEPT
+            140 JUMP_FORWARD             4 (to 150)
+
+182     >>  142 RERAISE                  0
+        >>  144 COPY                     3
+            146 POP_EXCEPT
+            148 RERAISE                  1
+
+184     >>  150 LOAD_CONST               3 (None)
+            152 STORE_FAST               3 (fut)
+
+185         154 NOP
+
+186         156 LOAD_FAST                0 (self)
+            158 LOAD_ATTR                4 (_upload_waiters)
+            168 LOAD_METHOD              5 (pop)
+            190 LOAD_FAST                2 (uid)
+            192 LOAD_CONST               3 (None)
+            194 PRECALL                  2
+            198 CALL                     2
+            208 STORE_FAST               3 (fut)
+            210 JUMP_FORWARD            18 (to 248)
+        >>  212 PUSH_EXC_INFO
+
+187         214 LOAD_GLOBAL              6 (Exception)
+            226 CHECK_EXC_MATCH
+            228 POP_JUMP_FORWARD_IF_FALSE     5 (to 240)
+            230 POP_TOP
+
+188         232 LOAD_CONST               3 (None)
+            234 STORE_FAST               3 (fut)
+            236 POP_EXCEPT
+            238 JUMP_FORWARD             4 (to 248)
+
+187     >>  240 RERAISE                  0
+        >>  242 COPY                     3
+            244 POP_EXCEPT
+            246 RERAISE                  1
+
+189     >>  248 NOP
+
+190         250 LOAD_FAST                3 (fut)
+            252 POP_JUMP_FORWARD_IF_FALSE    43 (to 340)
+            254 LOAD_FAST                3 (fut)
+            256 LOAD_METHOD              6 (done)
+            278 PRECALL                  0
+            282 CALL                     0
+            292 POP_JUMP_FORWARD_IF_TRUE    25 (to 344)
+
+191         294 LOAD_FAST                3 (fut)
+            296 LOAD_METHOD              7 (set_result)
+            318 LOAD_CONST               4 (True)
+            320 PRECALL                  1
+            324 CALL                     1
+            334 POP_TOP
+            336 LOAD_CONST               3 (None)
+            338 RETURN_VALUE
+
+190     >>  340 LOAD_CONST               3 (None)
+            342 RETURN_VALUE
+        >>  344 LOAD_CONST               3 (None)
+            346 RETURN_VALUE
+        >>  348 PUSH_EXC_INFO
+
+192         350 LOAD_GLOBAL              6 (Exception)
+            362 CHECK_EXC_MATCH
+            364 POP_JUMP_FORWARD_IF_FALSE     4 (to 374)
+            366 POP_TOP
+
+193         368 POP_EXCEPT
+            370 LOAD_CONST               3 (None)
+            372 RETURN_VALUE
+
+192     >>  374 RERAISE                  0
+        >>  376 COPY                     3
+            378 POP_EXCEPT
+            380 RERAISE                  1
+ExceptionTable:
+  4 to 110 -> 114 [0]
+  114 to 136 -> 144 [1] lasti
+  142 to 142 -> 144 [1] lasti
+  156 to 208 -> 212 [0]
+  212 to 234 -> 242 [1] lasti
+  240 to 240 -> 242 [1] lasti
+  250 to 334 -> 348 [0]
+  348 to 366 -> 376 [1] lasti
+  374 to 374 -> 376 [1] lasti

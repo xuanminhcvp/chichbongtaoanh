@@ -1,0 +1,130 @@
+195           0 RESUME                   0
+
+197           2 NOP
+
+198           4 LOAD_GLOBAL              1 (NULL + str)
+             16 LOAD_FAST                1 (data)
+             18 LOAD_METHOD              1 (get)
+             40 LOAD_CONST               1 ('upload_id')
+             42 PRECALL                  1
+             46 CALL                     1
+             56 JUMP_IF_TRUE_OR_POP      1 (to 60)
+             58 LOAD_CONST               2 ('')
+        >>   60 PRECALL                  1
+             64 CALL                     1
+             74 LOAD_METHOD              2 (strip)
+             96 PRECALL                  0
+            100 CALL                     0
+            110 STORE_FAST               2 (uid)
+            112 JUMP_FORWARD            18 (to 150)
+        >>  114 PUSH_EXC_INFO
+
+199         116 LOAD_GLOBAL              6 (Exception)
+            128 CHECK_EXC_MATCH
+            130 POP_JUMP_FORWARD_IF_FALSE     5 (to 142)
+            132 POP_TOP
+
+200         134 LOAD_CONST               2 ('')
+            136 STORE_FAST               2 (uid)
+            138 POP_EXCEPT
+            140 JUMP_FORWARD             4 (to 150)
+
+199     >>  142 RERAISE                  0
+        >>  144 COPY                     3
+            146 POP_EXCEPT
+            148 RERAISE                  1
+
+201     >>  150 LOAD_GLOBAL              1 (NULL + str)
+            162 LOAD_FAST                1 (data)
+            164 LOAD_METHOD              1 (get)
+            186 LOAD_CONST               3 ('error')
+            188 PRECALL                  1
+            192 CALL                     1
+            202 JUMP_IF_TRUE_OR_POP      1 (to 206)
+            204 LOAD_CONST               4 ('upload_image_error')
+        >>  206 PRECALL                  1
+            210 CALL                     1
+            220 STORE_FAST               3 (err)
+
+202         222 LOAD_CONST               5 (None)
+            224 STORE_FAST               4 (fut)
+
+203         226 NOP
+
+204         228 LOAD_FAST                0 (self)
+            230 LOAD_ATTR                4 (_upload_waiters)
+            240 LOAD_METHOD              5 (pop)
+            262 LOAD_FAST                2 (uid)
+            264 LOAD_CONST               5 (None)
+            266 PRECALL                  2
+            270 CALL                     2
+            280 STORE_FAST               4 (fut)
+            282 JUMP_FORWARD            18 (to 320)
+        >>  284 PUSH_EXC_INFO
+
+205         286 LOAD_GLOBAL              6 (Exception)
+            298 CHECK_EXC_MATCH
+            300 POP_JUMP_FORWARD_IF_FALSE     5 (to 312)
+            302 POP_TOP
+
+206         304 LOAD_CONST               5 (None)
+            306 STORE_FAST               4 (fut)
+            308 POP_EXCEPT
+            310 JUMP_FORWARD             4 (to 320)
+
+205     >>  312 RERAISE                  0
+        >>  314 COPY                     3
+            316 POP_EXCEPT
+            318 RERAISE                  1
+
+207     >>  320 NOP
+
+208         322 LOAD_FAST                4 (fut)
+            324 POP_JUMP_FORWARD_IF_FALSE    56 (to 438)
+            326 LOAD_FAST                4 (fut)
+            328 LOAD_METHOD              6 (done)
+            350 PRECALL                  0
+            354 CALL                     0
+            364 POP_JUMP_FORWARD_IF_TRUE    38 (to 442)
+
+209         366 LOAD_FAST                4 (fut)
+            368 LOAD_METHOD              7 (set_exception)
+            390 LOAD_GLOBAL             17 (NULL + RuntimeError)
+            402 LOAD_FAST                3 (err)
+            404 PRECALL                  1
+            408 CALL                     1
+            418 PRECALL                  1
+            422 CALL                     1
+            432 POP_TOP
+            434 LOAD_CONST               5 (None)
+            436 RETURN_VALUE
+
+208     >>  438 LOAD_CONST               5 (None)
+            440 RETURN_VALUE
+        >>  442 LOAD_CONST               5 (None)
+            444 RETURN_VALUE
+        >>  446 PUSH_EXC_INFO
+
+210         448 LOAD_GLOBAL              6 (Exception)
+            460 CHECK_EXC_MATCH
+            462 POP_JUMP_FORWARD_IF_FALSE     4 (to 472)
+            464 POP_TOP
+
+211         466 POP_EXCEPT
+            468 LOAD_CONST               5 (None)
+            470 RETURN_VALUE
+
+210     >>  472 RERAISE                  0
+        >>  474 COPY                     3
+            476 POP_EXCEPT
+            478 RERAISE                  1
+ExceptionTable:
+  4 to 110 -> 114 [0]
+  114 to 136 -> 144 [1] lasti
+  142 to 142 -> 144 [1] lasti
+  228 to 280 -> 284 [0]
+  284 to 306 -> 314 [1] lasti
+  312 to 312 -> 314 [1] lasti
+  322 to 432 -> 446 [0]
+  446 to 464 -> 474 [1] lasti
+  472 to 472 -> 474 [1] lasti
